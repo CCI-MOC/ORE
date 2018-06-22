@@ -1,0 +1,32 @@
+#cloud-config
+cloud_config_modules:
+  - resolv_conf
+  - users_groups
+  - package_update_upgrade_install
+  - runcmd
+manage_resolv_conf: true
+resolv_conf: 
+  nameservers: ['8.8.4.4', '8.8.8.8']
+  searchdomains:
+  - moclocal
+  domain: moclocal
+  options:
+    rotate: true
+    timeout: 1
+package_upgrade: true
+packages:
+  - git
+  - gcc
+  - wget
+package_reboot_if_required: true
+users:
+  - default
+  - name: stack
+    homedir: /opt/stack
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+runcmd:
+  - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
+  - 'sudo wget -O /opt/stack/devstack/moc-devstack.patch https://raw.githubusercontent.com/hgibson1/repeatable_openstack/master/patch/moc-devstack.patch'
+  - 'sudo git apply --directory /opt/stack/devstack /opt/stack/devstack/moc-devstack.patch'
+
