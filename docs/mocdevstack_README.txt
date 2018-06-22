@@ -3,17 +3,13 @@ MOC Devstack
 
 Launch Instructions:
 - Launch a VM with $RAM, $CPU, $NETWORKING, $OS, $FLAVOR, $ETC
-- Copy the devstack_init script from $LOCATION
-- Run `sh devstack_init.sh` this script will:
-    - Install git
-    - Create the "stack" user for devstack use
-    - Clone the devstack repo
-    - Change user to stack
-- Copy the patch from the MOC repo
-- `cd devstack`
+   - In the "Configuration" section, launch with the single_node_devstack.yml
+   cloud-config script
+- on the machine, switch to stack user: `sudo su - stack`
+- enter the devstack directory: `cd devstack`
 - Edit local.conf as desired
-- `./stack.sh`
-- Installation may take 15-20 minutes
+- install + run DevStack: `./stack.sh`
+- Installation may take up to 20 minutes
 
 --------------------------------------------------------------
 
