@@ -11,7 +11,7 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 
 #### Launch Instructions:
 - In Kaizen, launch a CentOS VM with $RAM, $CPU, $NETWORKING, $FLAVOR, $ETC
-   - In the "Configuration" section, launch with the [single_node_devstack.yml](../blob/master/single_node_devstack/single_node_devstack.yml) cloud-config script
+   - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
 - On the machine, switch to stack user: `sudo su - stack`
 - Enter the devstack directory: `cd devstack`
 - Edit local.conf as desired
