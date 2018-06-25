@@ -1,32 +1,36 @@
 # more
 ### MOC OpenStack Research Environment
 
-The MOC Openstack Research Environment is a two-pronged suite of testing tools for MOCers. It consists of a development environment (a modified [DevStack](https://docs.openstack.org/devstack/latest/) environment for quickly testing changes) and a production-like environment (a modified [TripleO](https://docs.openstack.org/tripleo-docs/latest/) environment for testing changes at production-level scale).
-
-## Development Environment
-
-Launch Instructions:
-- Launch a VM with $RAM, $CPU, $NETWORKING, $OS, $FLAVOR, $ETC
-   - In the "Configuration" section, launch with the single_node_devstack.yml
-   cloud-config script
-- on the machine, switch to stack user: `sudo su - stack`
-- enter the devstack directory: `cd devstack`
-- Edit local.conf as desired
-- install + run DevStack: `./stack.sh`
-- Installation may take up to 20 minutes
+The MOC Openstack Research Environment is a two-pronged suite of testing tools for MOCers. It consists of a development environment (a single-node modified [DevStack](https://docs.openstack.org/devstack/latest/) environment for quickly testing changes and running smaller experiments) and a production-like environment (a multi-node modified [TripleO](https://docs.openstack.org/tripleo-docs/latest/) environment for testing changes and running experiments at production-level scale).
 
 --------------------------------------------------------------
 
-Local.conf:
+## Development Environment
+
+DevStack is a collection of scripts designed to quickly deploy an OpenStack environment on a single node. MOC DevStack is a patch designed to be compatible with CentOS and add some functionality.
+
+#### Launch Instructions:
+- Launch a CentOS VM with $RAM, $CPU, $NETWORKING, $FLAVOR, $ETC
+   - In the "Configuration" section, launch with the single_node_devstack.yml
+   cloud-config script
+- On the machine, switch to stack user: `sudo su - stack`
+- Enter the devstack directory: `cd devstack`
+- Edit local.conf as desired
+- Install + run DevStack: `./stack.sh`
+- Installation may take up to 25 minutes (enabled plugins may increase install time)
+
+--------------------------------------------------------------
+
+#### Local.conf:
 
 /opt/stack/devstack/local.conf
 - set the openstack passwords
 - specify the repo/branch/commit for services
 - enable or disable plugins like rally, osprofiler, etc
 
----------------------------------------------------------------
+--------------------------------------------------------------
 
-Repos, Branches, and Commits (oh my!):
+#### Repos, Branches, and Commits (oh my!):
 
 To use a specific repo, branch, or commit, before running stack.sh
 edit local.conf to add:
@@ -35,12 +39,13 @@ $SERVICE_REPO=<git repo url>
 $SERVICE_BRANCH=<branch name>
 $SERVICE_COMMIT=<commit sha>
 
-Turn reclone on to make sure that devstack fetches the specified
-repository and uses it for the openstack service.
+After running stack.sh, the repo/branch/commit can be modified
+for an individual service using git commands in the service
+directory at /opt/stack/$SERVICE as indicated below.
 
 --------------------------------------------------------------
 
-Openstack Services:
+#### Openstack Services:
 
 To test large changes to Openstack source code, first ensure 
 that the proper repos are specified in your local.conf. Commit
@@ -67,4 +72,4 @@ be overwritten by subsequent DevStack runs*
 
 ## Production-Like Environment
 
-
+WIP
