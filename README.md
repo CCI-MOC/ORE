@@ -7,7 +7,7 @@ The MOC Openstack Research Environment is a two-pronged suite of testing tools f
 
 ## Development Environment
 
-DevStack is a collection of scripts designed to quickly deploy an OpenStack environment on a single node. MOC DevStack is a patch designed to be compatible with CentOS and add some functionality.
+DevStack is a collection of scripts designed to quickly deploy an OpenStack environment on a single node for testing purposes. MOC DevStack is a patch designed to be compatible with CentOS and add some functionality.
 
 #### Launch Instructions:
 - In Kaizen, launch a CentOS VM with $RAM, $CPU, $NETWORKING, $FLAVOR, $ETC
@@ -31,11 +31,13 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 
 #### Repos, Branches, and Commits (oh my!):
 
-To use a specific repo, branch, or commit, before running stack.sh
+To use a specific repo, branch, and/or commit, before running stack.sh
 edit local.conf to add:
 
 $SERVICE_REPO=<git repo url>
+
 $SERVICE_BRANCH=<branch name>
+
 $SERVICE_COMMIT=<commit sha>
 
 After running stack.sh, the repo/branch/commit can be modified
