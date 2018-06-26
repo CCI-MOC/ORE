@@ -27,6 +27,6 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
-  - 'sudo wget -O /opt/stack/devstack/moc-devstack.patch https://raw.githubusercontent.com/CCI-MOC/more/master/patch/moc-devstack.patch'
+  - 'sudo wget -O /opt/stack/devstack/moc-devstack.patch https://raw.githubusercontent.com/CCI-MOC/ORE/master/patch/moc-devstack.patch'
   - 'sudo git apply --directory /opt/stack/devstack /opt/stack/devstack/moc-devstack.patch'
 
