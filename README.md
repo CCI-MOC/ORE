@@ -13,6 +13,7 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
    - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
 - On the machine, switch to stack user: `sudo su - stack`
 - Enter the devstack directory: `cd devstack`
+- Apply the MOC DevStack patch: `sudo git apply moc-devstack.patch`
 - Edit local.conf as desired
 - Install + run DevStack: `./stack.sh`
 - *Installation may take up to 25 minutes (enabled plugins may increase install time)
@@ -53,7 +54,7 @@ directory at /opt/stack/$SERVICE as indicated below.
 Workflow for testing changes to Openstack source code:
 1. Specify your custom git repo in local.conf as indicated above
 2. Install DevStack `./stack.sh`
-3. Make changes to your 
+3. Make changes to your openstack source code in the repo
 4. `git pull` changes into the directory on DevStack machine
 5. Restart DevStack: `./unstack.sh` and `./stack.sh`
 
