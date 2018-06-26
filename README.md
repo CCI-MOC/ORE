@@ -1,7 +1,6 @@
-# more
-### MOC OpenStack Research Environment
+# Openstack Research Environment
 
-The MOC Openstack Research Environment is a two-pronged suite of testing tools for MOCers. It consists of a development environment (a single-node modified [DevStack](https://docs.openstack.org/devstack/latest/) environment for quickly testing changes and running smaller experiments) and a production-like environment (a multi-node modified [TripleO](https://docs.openstack.org/tripleo-docs/latest/) environment for testing changes and running experiments at production-level scale).
+The MOC Openstack Research Environment is a two-pronged suite of testing tools for MOCers. It consists of a development environment (a single-node modified [DevStack](https://docs.openstack.org/devstack/latest/) environment for quickly* testing changes and running smaller experiments) and a production-like environment (a multi-node modified [TripleO](https://docs.openstack.org/tripleo-docs/latest/) environment for testing changes and running experiments at production-level scale).
 
 --------------------------------------------------------------
 
@@ -16,14 +15,17 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 - Enter the devstack directory: `cd devstack`
 - Edit local.conf as desired
 - Install + run DevStack: `./stack.sh`
-- Installation may take up to 25 minutes (enabled plugins may increase install time)
+- *Installation may take up to 25 minutes (enabled plugins may increase install time)
 
 --------------------------------------------------------------
 
 #### Local.conf:
+[local.conf](../master/patch/local.conf)
 
-/opt/stack/devstack/local.conf
-- set the openstack passwords
+located on DevStack machine at: /opt/stack/devstack/local.conf
+
+Usage:
+- set the openstack passwords (default is "Devstack1" for admin user)
 - specify the repo/branch/commit for services
 - enable or disable plugins like rally, osprofiler, etc
 
@@ -48,20 +50,20 @@ directory at /opt/stack/$SERVICE as indicated below.
 
 #### Openstack Services:
 
-To test large changes to Openstack source code, first ensure 
-that the proper repos are specified in your local.conf. Commit
-your changes to the git tree, then enter the /opt/stack/$SERVICE
-folder for the service modified. Run `git pull` to get your latest
-changes. Then, in the /opt/stack/devstack folder run `./unstack.sh` 
-and `./stack.sh` to restart the devstack service. This will take 
-15-20 minutes for devstack to rebuild.
+Workflow for testing changes to Openstack source code:
+1. Specify your custom git repo in local.conf as indicated above
+2. Install DevStack `./stack.sh`
+3. Make changes to your 
+4. `git pull` changes into the directory on DevStack machine
+5. Restart DevStack: `./unstack.sh` and `./stack.sh`
 
 
-To test smaller changes, you can edit the code on the machine
-itself. Source code for openstack services is located in
-`/opt/stack/$SERVICE`. After making a change, restart openstack
-services by running:
+Another option is to edit the code on the machine itself. This may be advantageous for testing smaller changes if you do not want to go through the git workflow. Source code for openstack services is located in `/opt/stack/$SERVICE`. After making a change, restart all openstack services by running:
 `sudo systemctl restart "devstack@*"`
+
+Recommended reading on openstack services in devstack: 
+- https://docs.openstack.org/devstack/latest/development.html
+- https://docs.openstack.org/devstack/latest/systemd.html
 
 *note that these changes are in checked out git trees, so if you
 do not commit changes using the second method, your work may
