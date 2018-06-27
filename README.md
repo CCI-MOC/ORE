@@ -62,13 +62,13 @@ Workflow for testing changes to Openstack source code:
 Another option is to edit the code on the machine itself. This may be advantageous for testing smaller changes if you do not want to go through the git workflow. Source code for openstack services is located in `/opt/stack/$SERVICE`. After making a change, restart all openstack services by running:
 `sudo systemctl restart "devstack@*"`
 
+You can also restart individual services after making a change with similar syntax. More info: https://docs.openstack.org/devstack/latest/development.html
+
 *note that these changes are in checked out git trees, so if you
 do not commit changes using the second method, your work may
 be overwritten by subsequent DevStack runs*
 
-Recommended reading on openstack services in devstack: 
-- https://docs.openstack.org/devstack/latest/development.html
-- https://docs.openstack.org/devstack/latest/systemd.html
+Further reading on openstack services in devstack: https://docs.openstack.org/devstack/latest/systemd.html
 
 
 --------------------------------------------------------------
