@@ -19,6 +19,7 @@ packages:
   - git
   - gcc
   - wget
+  - vim
 package_reboot_if_required: true
 users:
   - default
