@@ -72,6 +72,14 @@ be overwritten by subsequent DevStack runs*
 
 Further reading on openstack services in devstack: https://docs.openstack.org/devstack/latest/systemd.html
 
+--------------------------------------------------------------
+
+#### Modifications to DevStack:
+
+- after cloning requirements repo, change python-libvirt to 3.9 in upper-constraints.txt (this is because CentOS 7 ships with python-libvirt 3.9 but devstack pike sets upper limit of python-libvirt 3.5)
+- implement fix in devstack/inc/python to not uninstall when offline mode is enabled
+- enable offline mode after a successful install of devstack in order to avoid downloading new (and incompatible) versions of software
+- change /inc/$SERVICE to use git reset to allow choosing a specific commit
 
 --------------------------------------------------------------
 
