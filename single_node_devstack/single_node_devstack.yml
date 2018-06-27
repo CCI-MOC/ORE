@@ -23,9 +23,9 @@ package_reboot_if_required: true
 users:
   - default
   - name: stack
-  - homedir: /opt/stack
-  - shell: /bin/bash
-  - sudo: ALL=(ALL) NOPASSWD:ALL
+    homedir: /opt/stack
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
   - 'sudo wget -O /opt/stack/devstack/moc-devstack.patch https://raw.githubusercontent.com/CCI-MOC/ORE/master/patch/moc-devstack.patch'
