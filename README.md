@@ -13,7 +13,8 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
    - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
    
    *Note that VM launch may take up to 20 minutes. this is because the Kaizen CentOS image is out of date*
-- On the machine, switch to stack user: `sudo su - stack`
+   *VM status will be active, but it will be patching in the background. You can check the instance log on Kaizen to see when this is complete*
+- SSH to the machine as stack user `ssh stack@<devstack machine floating IP>`
 - Enter the devstack directory: `cd devstack`
 - Apply the MOC DevStack patch: `sudo git apply moc-devstack.patch`
 - Edit local.conf as desired
