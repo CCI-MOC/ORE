@@ -31,4 +31,4 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
-  - 'sudo svn export https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/'
+  - 'sudo svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/'
