@@ -21,6 +21,7 @@ packages:
   - wget
   - vim
   - tmux
+  - svn
 package_reboot_if_required: true
 users:
   - default
