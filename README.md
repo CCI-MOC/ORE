@@ -21,6 +21,8 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 - Install + run DevStack: `./stack.sh`
 - *Installation may take up to 25 minutes (enabled plugins may increase install time)
 
+*If you fork this repo, make sure to edit single_node_devstack.yml to point to your fork. Otherwise, it will continue to download the patch from CCI-MOC*
+
 --------------------------------------------------------------
 
 #### Local.conf:
