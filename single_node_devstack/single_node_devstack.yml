@@ -32,3 +32,5 @@ users:
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
   - 'sudo svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/'
+  - 'sudo cp -r /home/centos/.ssh /opt/stack/'
+  - 'sudo chown -R stack /opt/stack/.ssh'
