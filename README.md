@@ -9,13 +9,13 @@ The MOC Openstack Research Environment is a two-pronged suite of testing tools f
 DevStack is a collection of scripts designed to quickly deploy an OpenStack environment on a single node for testing purposes. MOC DevStack is a patch designed to be compatible with CentOS and add some functionality.
 
 #### Launch Instructions:
-- In Kaizen, launch a CentOS VM with $RAM, $CPU, $NETWORKING, $FLAVOR, $ETC
+- In Kaizen, launch a VM with the CentOS 7.5 image
    - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
    
-   *Note that VM launch may take up to 20 minutes. this is because the Kaizen CentOS image is out of date.*
+   *Note that VM launch may take up to 5 minutes. You can monitor the progress in the log in Kaizen.*
    
    *VM status will be active, but it will be patching in the background. You can check the instance log on Kaizen to see when this is complete*
-- SSH to the machine as stack user `ssh stack@<devstack machine floating IP>`
+- After VM launch complete, SSH to the machine as stack user `ssh stack@<devstack machine floating IP>`
 - Enter the devstack directory: `cd devstack`
 - Edit local.conf as desired
 - Install + run DevStack: `./stack.sh`
