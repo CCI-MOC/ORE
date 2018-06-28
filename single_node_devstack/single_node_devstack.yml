@@ -19,6 +19,8 @@ packages:
   - git
   - gcc
   - wget
+  - vim
+  - tmux
 package_reboot_if_required: true
 users:
   - default
