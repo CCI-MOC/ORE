@@ -15,7 +15,6 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
    *Note that VM launch may take up to 20 minutes. this is because the Kaizen CentOS image is out of date*
 - On the machine, switch to stack user: `sudo su - stack`
 - Enter the devstack directory: `cd devstack`
-- Apply the MOC DevStack patch: `sudo git apply moc-devstack.patch`
 - Edit local.conf as desired
 - Install + run DevStack: `./stack.sh`
 - *Installation may take up to 25 minutes (enabled plugins may increase install time)
