@@ -17,7 +17,6 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
    *VM status will be active, but it will be patching in the background. You can check the instance log on Kaizen to see when this is complete*
 - SSH to the machine as stack user `ssh stack@<devstack machine floating IP>`
 - Enter the devstack directory: `cd devstack`
-- Apply the MOC DevStack patch: `sudo git apply moc-devstack.patch`
 - Edit local.conf as desired
 - Install + run DevStack: `./stack.sh`
 - *Installation may take up to 25 minutes (enabled plugins may increase install time)
