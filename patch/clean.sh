@@ -159,3 +159,13 @@ if [[ -n "$DEST" ]] && [[ -d "$DEST" ]]; then
         sudo find $DEST -name "*.pyc" -delete
     fi
 fi
+
+# Disable offline mode
+# ORE enables offline mode after stack.sh
+# in order to avoid installing new versions
+# of packages. However, clean.sh uninstalls
+# packages and we need to be in online mode
+# in order to reinstall them.
+echo "Enabling online mode."
+echo "Packages will update on redeploy of devstack."
+sed -i 's/OFFLINE=True/#OFFLINE=True/' /opt/stack/devstack/local.conf
