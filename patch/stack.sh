@@ -1575,25 +1575,26 @@ sed -i 's/#OFFLINE=True/OFFLINE=True/' /opt/stack/devstack/local.conf
 # Fixes for osprofiler
 # - Patch nova + neutron
 # - Upgrade osprofiler from stable/pike to stable/queens (1.15.2)
-echo "Patching nova for osprofiler..."
-sed -i '85i\    service.setup_profiler(name, CONF.host)' /opt/stack/nova/nova/api/openstack/wsgi_app.py
-sed -i '86i\ ' /opt/stack/nova/nova/api/openstack/wsgi_app.py
-cd /opt/stack/nova
-sudo pip install --no-deps --force-reinstall -U .
+if ! grep -q "osprofiler " /opt/stack/neutron/etc/api-paste.ini && grep -q "osprofiler" /opt/stack/devstack/local.conf; then
+    echo "Patching nova for osprofiler..."
+    sed -i '85i\    service.setup_profiler(name, CONF.host)' /opt/stack/nova/nova/api/openstack/wsgi_app.py
+    sed -i '86i\ ' /opt/stack/nova/nova/api/openstack/wsgi_app.py
+    cd /opt/stack/nova
+    sudo pip install --no-deps --force-reinstall -U .
 
-echo "Patching neutron for osprofiler..."
-sed -i 's/\(catch_errors \)/\1osprofiler /' /opt/stack/neutron/etc/api-paste.ini
-cd /opt/stack/neutron
-sudo pip install --no-deps --force-reinstall -U .
+    echo "Patching neutron for osprofiler..."
+    sed -i 's/\(catch_errors \)/\1osprofiler /' /opt/stack/neutron/etc/api-paste.ini
+    cd /opt/stack/neutron
+    sudo pip install --no-deps --force-reinstall -U .
 
-echo "Upgrading osprofiler to stable/queens..."
-cd /opt/stack/osprofiler
-git checkout stable/queens
-sudo pip install --no-deps --force-reinstall -U .
+    echo "Upgrading osprofiler to stable/queens..."
+    cd /opt/stack/osprofiler
+    git checkout stable/queens
+    sudo pip install --no-deps --force-reinstall -U .
 
-echo "Restarting devstack services..."
-sudo systemctl restart devstack@*
-
+    echo "Restarting devstack services..."
+    sudo systemctl restart devstack@*
+fi
 echo "Installation successful! :)"
 # End ORE Changes
 ##############################################################
