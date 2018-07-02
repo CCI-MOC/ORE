@@ -1563,11 +1563,40 @@ echo
 # Indicate how long this took to run (bash maintained variable ``SECONDS``)
 echo_summary "stack.sh completed in $SECONDS seconds."
 
+##############################################################
+# ORE Changes
+
 # Enable offline mode after a successful install in order to 
 # prevent updating software to incompatible versions
 echo "Enabling offline mode."
 echo "*Packages will not update on redeploys of stack unless you edit local.conf*"
 sed -i 's/#OFFLINE=True/OFFLINE=True/' /opt/stack/devstack/local.conf
+
+# Fixes for osprofiler
+# - Patch nova + neutron
+# - Upgrade osprofiler from stable/pike to stable/queens (1.15.2)
+echo "Patching nova for osprofiler..."
+sed -i '85i\    service.setup_profiler(name, CONF.host)' /opt/stack/nova/nova/api/openstack/wsgi_app.py
+sed -i '86i\ ' /opt/stack/nova/nova/api/openstack/wsgi_app.py
+cd /opt/stack/nova
+sudo pip install --no-deps --force-reinstall -U .
+
+echo "Patching neutron for osprofiler..."
+sed -i 's/\(catch_errors \)/\1osprofiler /' /opt/stack/neutron/etc/api-paste.ini
+cd /opt/stack/neutron
+sudo pip install --no-deps --force-reinstall -U .
+
+echo "Upgrading osprofiler to stable/queens..."
+cd /opt/stack/osprofiler
+git checkout stable/queens
+sudo pip install --no-deps --force-reinstall -U .
+
+echo "Restarting devstack services..."
+sudo systemctl restart devstack@*
+
+echo "Installation successful! :)"
+# End ORE Changes
+##############################################################
 
 # Restore/close logging file descriptors
 exec 1>&3
