@@ -1573,8 +1573,7 @@ echo "*Packages will not update on redeploys of stack unless you edit local.conf
 sed -i 's/#OFFLINE=True/OFFLINE=True/' /opt/stack/devstack/local.conf
 
 # Fixes for osprofiler
-# - Patch nova + neutron
-# - Upgrade osprofiler from stable/pike to stable/queens (1.15.2)
+# Patch nova + neutron
 if ! grep -q "osprofiler " /opt/stack/neutron/etc/api-paste.ini && grep -q "osprofiler" /opt/stack/devstack/local.conf; then
     echo "Patching nova for osprofiler..."
     sed -i '85i\    service.setup_profiler(name, CONF.host)' /opt/stack/nova/nova/api/openstack/wsgi_app.py
@@ -1586,12 +1585,7 @@ if ! grep -q "osprofiler " /opt/stack/neutron/etc/api-paste.ini && grep -q "ospr
     sed -i 's/\(catch_errors \)/\1osprofiler /' /opt/stack/neutron/etc/api-paste.ini
     cd /opt/stack/neutron
     sudo pip install --no-deps --force-reinstall -U .
-
-    echo "Upgrading osprofiler to stable/queens..."
-    cd /opt/stack/osprofiler
-    git checkout stable/queens
-    sudo pip install --no-deps --force-reinstall -U .
-
+    
     echo "Restarting devstack services..."
     sudo systemctl restart devstack@*
 fi
