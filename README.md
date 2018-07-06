@@ -10,7 +10,7 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 
 #### Launch Instructions:
 - In Kaizen, launch a VM with the CentOS 7.5 image and at least m1.large flavor
-   - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
+   - In the "Configuration" section, launch with the [single_node_devstack.yml](./single_node_devstack/single_node_devstack.yml) cloud-config script
    
    *Note that VM launch may take up to 5 minutes. You can monitor the progress in the log in Kaizen.*
    
@@ -26,7 +26,7 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 --------------------------------------------------------------
 
 #### Local.conf:
-[local.conf](../master/patch/local.conf)
+[local.conf](./patch/local.conf)
 
 located on DevStack machine at: /opt/stack/devstack/local.conf
 
