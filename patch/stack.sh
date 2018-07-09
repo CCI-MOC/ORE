@@ -1574,6 +1574,7 @@ sed -i 's/#OFFLINE=True/OFFLINE=True/' /opt/stack/devstack/local.conf
 
 # Fixes for osprofiler
 # Patch nova + neutron
+# Install stable/queens osprofiler
 if ! grep -q "osprofiler " /opt/stack/neutron/etc/api-paste.ini && grep -q "osprofiler" /opt/stack/devstack/local.conf; then
     echo "Patching nova for osprofiler..."
     sed -i '85i\    service.setup_profiler(name, CONF.host)' /opt/stack/nova/nova/api/openstack/wsgi_app.py
@@ -1586,6 +1587,10 @@ if ! grep -q "osprofiler " /opt/stack/neutron/etc/api-paste.ini && grep -q "ospr
     cd /opt/stack/neutron
     sudo pip install --no-deps --force-reinstall -U .
     
+    echo "Installing new version of osprofiler..."
+    cd /opt/stack/osprofiler
+    sudo pip install --no-deps --force-reinstall -U .
+
     echo "Restarting devstack services..."
     sudo systemctl restart devstack@*
 fi
