@@ -31,7 +31,7 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
-  - 'sudo svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/'
+  - [su, -c, 'svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/', stack]
   - 'sudo cp -r /home/centos/.ssh /opt/stack/'
   - 'sudo chown -R stack /opt/stack/.ssh'
   - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then\n        . /opt/stack/devstack/openrc admin admin\nfi" >> /opt/stack/.bashrc'
