@@ -630,6 +630,11 @@ function configure_tempest {
 # install_tempest() - Collect source and prepare
 function install_tempest {
     git_clone $TEMPEST_REPO $TEMPEST_DIR $TEMPEST_BRANCH
+    
+    cd $TEMPEST_DIR
+    git reset --hard $TEMPEST_COMMIT
+    cd -
+    
     pip_install tox
     pushd $TEMPEST_DIR
     tox -r --notest -efull
