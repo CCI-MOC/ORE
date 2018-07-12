@@ -433,6 +433,11 @@ function install_mutnauq {
     fi
 
     git_clone $NEUTRON_REPO $NEUTRON_DIR $NEUTRON_BRANCH
+    
+    cd $NEUTRON_DIR
+    git reset --hard $NEUTRON_COMMIT
+    cd -
+    
     setup_develop $NEUTRON_DIR
 }
 
