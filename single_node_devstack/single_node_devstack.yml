@@ -26,9 +26,9 @@ package_reboot_if_required: true
 users:
   - default
   - name: stack
+    sudo: ALL=(ALL) NOPASSWD:ALL
     homedir: /opt/stack
     shell: /bin/bash
-    sudo: ALL=(ALL) NOPASSWD:ALL
 runcmd:
   - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
   - [su, -c, 'svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/', stack]
