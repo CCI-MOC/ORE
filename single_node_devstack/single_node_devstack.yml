@@ -12,8 +12,8 @@ resolv_conf:
   domain:
     - moclocal
   options:
-    - rotate: true
-    - timeout: 1
+    rotate: true
+    timeout: 1
 package_upgrade: true
 packages:
   - git
