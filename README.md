@@ -11,10 +11,7 @@ DevStack is a collection of scripts designed to quickly deploy an OpenStack envi
 #### Launch Instructions:
 - In Kaizen, launch a VM with the CentOS 7.5 image and at least m1.large flavor
    - In the "Configuration" section, launch with the [single_node_devstack.yml](../master/single_node_devstack/single_node_devstack.yml) cloud-config script
-   - On line 31 of single_node_devstack.yml you will see the field 'ssh_authorized_keys:' and the tag '<put your public key here>' replace the tag with the contents of the public rsa key you would like to use to connect to your instance. For example:
-    ssh-authorized-keys:
-     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDe8v4p/cyjfWu3Mxz0O69s8uaCg+DcPnDAeOdd4+smCHgF7UUcJhW+DMht5kXchLbrbX0D1O6rW+P02rh/2DOd4THVelh3BNnQqxu3qqsEZKy0W/hk9fCantIB9Y3WCZEbgmTUOuHsz0RI9Mw3dATMLxzz/R4NYvWVUIVweuZswiGSVRi5Bp2Au01gUAc3oxrTNasSnmRJ2KynPSA3vkB0PwnKfXJRzkY7p1wlJ85tQE2vXSP9E8bkCmEUSmHne40/Wne6Z/cAZfYCJxIlgcx5uv/LoWJ/7d3aGp4E6a3guyS3GwTYROmRIuzS6W/t8fG2hW9PfoSf1AGaWtS00t51 hannah@gibsonian
-   
+
    *Note that VM launch may take up to 5 minutes. You can monitor the progress in the log in Kaizen.*
    
    *VM status will be active, but it will be patching in the background. You can check the instance log on Kaizen to see when this is complete*
