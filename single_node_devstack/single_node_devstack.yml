@@ -24,13 +24,14 @@ packages:
   - svn
 package_reboot_if_required: true
 users:
+  - default
   - name: stack
     sudo: ALL=(ALL) NOPASSWD:ALL
     homedir: /opt/stack
     shell: /bin/bash
-    ssh-authorized-keys:
-     - <put your rsa public key here>
 runcmd:
  - [su, -c, "git clone -b stable/pike https://github.com/openstack-dev/devstack.git /opt/stack/devstack", stack]
  - [su, -c, 'svn export --force https://github.com/CCI-MOC/ORE/trunk/patch /opt/stack/devstack/', stack]
- - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then\n        . /opt/stack/devstack/openrc admin admin\nfi" >> /opt/stack/.bashrc'
+ - 'sudo echo -e "if [[ \$- == *i* ]] && [ -d "/opt/stack/keystone" ]; then . /opt/stack/devstack/openrc admin admin; fi" >> /opt/stack/.bashrc'
+ - 'sudo cp -R /home/centos/.ssh /opt/stack/'
+ - 'sudo chown -R stack /opt/stack/.ssh'
